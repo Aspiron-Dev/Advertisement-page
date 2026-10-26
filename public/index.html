@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src https://*.supabase.co wss://*.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ad Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Login -->
+  <section id="loginView" class="view hidden">
+    <form id="loginForm" class="card login">
+      <h1>Ad Panel</h1>
+      <p class="muted">Login to see your promotion data</p>
+      <label>Email <input id="email" type="email" autocomplete="username" required></label>
+      <label>Password <input id="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="btn primary">Login</button>
+      <p id="loginMsg" class="msg"></p>
+    </form>
+  </section>
+
+  <!-- App -->
+  <section id="appView" class="view hidden">
+    <header class="topbar">
+      <div class="brand">Ad Panel <span id="roleBadge" class="badge"></span></div>
+      <div class="who"><span id="userEmail" class="muted"></span>
+        <button id="logoutBtn" class="btn">Logout</button></div>
+    </header>
+
+    <div class="toolbar">
+      <select id="filterInfluencer" aria-label="Filter influencer"></select>
+      <input id="search" type="search" placeholder="Search…" aria-label="Search">
+      <span class="spacer"></span>
+      <span id="saveStatus" class="muted"></span>
+      <button id="refreshBtn" class="btn">Refresh</button>
+      <button id="csvBtn" class="btn">Export CSV</button>
+      <button id="addRowBtn" class="btn primary admin-only">+ Add row</button>
+    </div>
+
+    <div id="cards" class="cards"></div>
+
+    <div class="sheet-wrap">
+      <table id="sheet" class="sheet">
+        <thead></thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+    <p id="emptyMsg" class="muted center hidden">No data yet.</p>
+  </section>
+
+  <section id="configView" class="view hidden">
+    <div class="card login"><h1>Setup needed</h1>
+      <p>config.js missing. Add SUPABASE_URL and SUPABASE_ANON_KEY secrets on GitHub (see README).</p></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
